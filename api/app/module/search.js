@@ -1,6 +1,7 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 const { login_cellphone, cloudsearch } = require('../api/NeteaseCloudMusicApi')
 const qqMusic = require('../api/QQMusicApi');
+qqMusic.setCookie(require('../../config.js').qqcookie)
 
 module.exports = async (query, res) => {
     let { keywords, type } = query
@@ -38,7 +39,7 @@ module.exports = async (query, res) => {
                 songs: result.list.map(e => {
                     return {
                         name: e.songname,
-                        id: e.songid,
+                        id: e.songmid,
                         artists: e.singer.map(e => {
                             return {
                                 name: e.name,
@@ -49,7 +50,7 @@ module.exports = async (query, res) => {
                             id: e.albumid,
                             name: e.albumname
                         },
-                        type: 'wyy'
+                        type: 'qq'
                     }
                 })
             })
