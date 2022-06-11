@@ -10,6 +10,7 @@ pnpm-lock.yaml
 # Coveralls
 .nyc_output
 coverage
+.vscode
 
 # Benchmarking
 benchmarks/graphs

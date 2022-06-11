@@ -5,7 +5,7 @@ module.exports = async (query, res) => {
 
     const { id } = query;
     if (id) {
-        playlist.deleteOne({ id: Number(id) },(err, doc) => {
+        playlist.deleteOne({ id },(err, doc) => {
             if (err) {
                 return res.send(err);
             } else {

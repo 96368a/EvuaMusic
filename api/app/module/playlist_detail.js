@@ -4,7 +4,7 @@ module.exports = async (query, res) => {
     const playlist = mongoose.model('Playlist');
     const { id } = query;
     if (id) {
-        playlist.find({id:Number(id)}).then((err, doc) => {
+        playlist.find({id}).then((err, doc) => {
             if (err) {
                 return res.send(err);
             } else {

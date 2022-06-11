@@ -6,7 +6,7 @@ var playlist = new Schema({
     id: Number,
     name: String,
     songs: [{
-        id: Number,
+        id: String,
         type: { type: String, default: 'wyy' },
         index: Number,
         name: String,
