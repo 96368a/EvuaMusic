@@ -10,7 +10,7 @@ module.exports = async (query, res) => {
             type = 'wyy'
         }
         if (type === 'wyy') {
-            let result = await cloudsearch(query)
+            let result = await cloudsearch({keywords})
             console.log(result);
             return res.send({
                 code: 200,
@@ -48,7 +48,8 @@ module.exports = async (query, res) => {
                         }),
                         album: {
                             id: e.albumid,
-                            name: e.albumname
+                            name: e.albumname,
+                            picUrl:`https://y.gtimg.cn/music/photo_new/T002R300x300M000${e.songmid}.jpg`
                         },
                         type: 'qq'
                     }

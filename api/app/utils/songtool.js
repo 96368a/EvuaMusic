@@ -37,6 +37,7 @@ async function findSong(ids, type) {
             return await qqMusic.api('song', { songmid: id })
         })
         result = await Promise.all(result)
+        console.log(result);
         return {
             code: 200,
             songs: result.map(e => {
@@ -51,7 +52,8 @@ async function findSong(ids, type) {
                     }),
                     album: {
                         id: e.track_info.album.mid,
-                        name: e.track_info.album.name
+                        name: e.track_info.album.name,
+                        picUrl:`https://y.gtimg.cn/music/photo_new/T002R300x300M000${e.track_info.album.mid}.jpg`
                     },
                     type: 'qq'
                 }

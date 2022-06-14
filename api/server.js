@@ -37,6 +37,7 @@ async function initWebSocket(app) {
     //初始化webscoket
     const wsClients = {}
     app.wsClients = wsClients;
+    console.log("webscoket初始化完成");
     //监听websocket
     app.ws('/sync/:wid', (ws, req) => {
         if (!wsClients[req.params.wid]) {
@@ -65,14 +66,14 @@ async function initWebSocket(app) {
             }
         }
     });
-    setInterval(() => {
+/*     setInterval(() => {
         // 定时打印连接池数量
         console.log('websocket connection counts:')
         Object.keys(wsClients).forEach(key => {
             console.log(key, ':', wsClients[key].length);
         })
         console.log('-----------------------------');
-    }, 5000);
+    }, 5000); */
 }
 
 async function startServer() {
