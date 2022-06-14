@@ -7,8 +7,8 @@ module.exports = async (query, res) => {
         if(type === 'wyy'){
             let data = await song_url({id});
             console.log(data);
-            res.send(data)
-            // res.redirect(`http://music.163.com/song/media/outer/url?id=${id}.mp3`)
+            // res.send(data)
+            res.redirect(data.body.data[0].url)
         }else if(type === 'qq'){
             let data = await qqMusic.api('/song/urls', { id })
             res.redirect(data[id])
