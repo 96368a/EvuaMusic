@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { login_cellphone, cloudsearch } = require('../api/NeteaseCloudMusicApi')
+const { login_cellphone,cloudsearch,search } = require('../api/NeteaseCloudMusicApi')
 const qqMusic = require('../api/QQMusicApi');
 qqMusic.setCookie(require('../../config.js').qqcookie)
 
