@@ -1,4 +1,5 @@
 const express = require("express")
+const expressWs = require('express-ws');
 const path = require('path')
 const fs = require('fs')
 
@@ -32,8 +33,53 @@ async function getModulesDefinitions(
     return modules
 }
 
+async function initWebSocket(app) {
+    //初始化webscoket
+    const wsClients = {}
+    app.wsClients = wsClients;
+    //监听websocket
+    app.ws('/sync/:wid', (ws, req) => {
+        if (!wsClients[req.params.wid]) {
+            wsClients[req.params.wid] = []
+        }
+        // 将连接记录在连接池中
+        wsClients[req.params.wid].push(ws);
+        //给同id其他客户端发送消息
+        ws.on('message', (msg) =>{
+            wsClients[req.params.wid].forEach(client => {
+                if (client !== ws) {
+                    client.send(msg)
+                }
+            }
+            )
+            // ws.send(msg);
+        });
+
+        ws.onclose = () => {
+            // 连接关闭时，wsClients进行清理
+            wsClients[req.params.wid] = wsClients[req.params.wid].filter((client) => {
+                return client !== ws;
+            });
+            if (wsClients[req.params.wid].length === 0) {
+                delete wsClients[req.params.wid];
+            }
+        }
+    });
+    setInterval(() => {
+        // 定时打印连接池数量
+        console.log('websocket connection counts:')
+        Object.keys(wsClients).forEach(key => {
+            console.log(key, ':', wsClients[key].length);
+        })
+        console.log('-----------------------------');
+    }, 5000);
+}
+
 async function startServer() {
     const app = express()
+    //开启websocket
+    expressWs(app);
+    await initWebSocket(app);
     /**
      * CORS 跨域设置
      */
@@ -71,11 +117,7 @@ async function startServer() {
                 req.body,
                 req.files,
             )
-
-
             const moduleResponse = await moduleDef.module(query, res)
-
-
             // res.send(moduleResponse)
 
         })

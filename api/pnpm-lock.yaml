@@ -2,12 +2,16 @@ lockfileVersion: 5.3
 
 specifiers:
   express: ^4.18.1
+  express-ws: ^5.0.2
   mongoose: ^6.3.6
+  mongoose-hidden: ^1.9.1
   mongoose-sequence: ^5.3.1
 
 dependencies:
   express: 4.18.1
+  express-ws: 5.0.2_express@4.18.1
   mongoose: 6.3.6
+  mongoose-hidden: 1.9.1
   mongoose-sequence: 5.3.1_mongoose@6.3.6
 
 packages:
@@ -163,6 +167,19 @@ packages:
   /etag/1.8.1:
     resolution: {integrity: sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npm.taobao.org/etag/-/etag-1.8.1.tgz}
     engines: {node: '>= 0.6'}
+    dev: false
+
+  /express-ws/5.0.2_express@4.18.1:
+    resolution: {integrity: sha512-0uvmuk61O9HXgLhGl3QhNSEtRsQevtmbL94/eILaliEADZBHZOQUAiHFrGPrgsjikohyrmSG5g+sCfASTt0lkQ==}
+    engines: {node: '>=4.5.0'}
+    peerDependencies:
+      express: ^4.0.0 || ^5.0.0-alpha.1
+    dependencies:
+      express: 4.18.1
+      ws: 7.5.8
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
     dev: false
 
   /express/4.18.1:
@@ -348,6 +365,12 @@ packages:
       saslprep: 1.0.3
     dev: false
 
+  /mongoose-hidden/1.9.1:
+    resolution: {integrity: sha512-wi9oKsNl8jOE+J+J6ZCx6LSakplCy/FzEUyAagllpFex9ya5DuY9og7u2cIVl2dk6h6DvKKHMgh30GDt2PzjMA==}
+    dependencies:
+      mpath: 0.8.4
+    dev: false
+
   /mongoose-sequence/5.3.1_mongoose@6.3.6:
     resolution: {integrity: sha512-kQB1ctCdAQT8YdQzoHV0CpBRsO4RNVy03SOkzM6TQKBbGBs1ZgVS4UlKsuvBPaiPt9q5tKgQZvorGJ1awbHDqA==}
     peerDependencies:
@@ -371,6 +394,11 @@ packages:
       sift: 16.0.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /mpath/0.8.4:
+    resolution: {integrity: sha512-DTxNZomBcTWlrMW76jy1wvV37X/cNNxPW1y2Jzd4DZkAaC5ZGsm8bfGfNOthcDuRJujXLqiuS6o3Tpy0JEoh7g==}
+    engines: {node: '>=4.0.0'}
     dev: false
 
   /mpath/0.9.0:
@@ -592,4 +620,17 @@ packages:
     dependencies:
       tr46: 3.0.0
       webidl-conversions: 7.0.0
+    dev: false
+
+  /ws/7.5.8:
+    resolution: {integrity: sha512-ri1Id1WinAX5Jqn9HejiGb8crfRio0Qgu8+MtL36rlTA6RLsMdWt1Az/19A2Qij6uSHUMphEFaTKa4WG+UNHNw==}
+    engines: {node: '>=8.3.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: ^5.0.2
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
     dev: false
